@@ -1,0 +1,20 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: green;
+  font-family: 'RobotoDraft';
+  transition: background .5s;
+}
+
+.lighting {
+  margin-bottom: 70px;
+  font-size: 20px;
+}
+
+.orange {
+  background: orange;
+}
+
+img {
+  margin-bottom: 70px;
+}
