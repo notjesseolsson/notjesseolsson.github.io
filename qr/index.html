@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>qr</title>
+  <script src='qrcode.js'></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var input = document.querySelector('input')
+      var div = document.querySelector('div')
+      var a = document.querySelector('a')
+      input.focus()
+      var qr = new QRCode(div, {
+        useSVG: true
+      })
+      input.addEventListener('keydown', function(e) {
+        if (e.keyCode == 13) {
+          var text = input.value
+          qr.makeCode(text)
+          var svg = document.querySelector('svg')
+          svg.removeAttribute('fill')
+          svg.removeChild(svg.children[0])
+          var serializer = new XMLSerializer()
+          var serialized = serializer.serializeToString(svg)
+          var file = 'data:image/svg+xml,' + serialized
+          a.href = file
+          var click = new Event('click')
+          a.dispatchEvent(click)
+        }
+      })
+    })
+  </script>
+  <style>
+    div, a {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <input>
+  <div></div>
+  <a download>link</a>
+</body>
+</html>
